@@ -1,4 +1,4 @@
-!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -21,7 +21,7 @@
 	<nav class="navbar navbar-default" role="navigation">
   		<div class="container-fluid">
   			<div class="navbar-header">
-				<a class="navbar-brand" href="#">-----</a>
+				<a class="navbar-brand" href="#">----</a>
   			</div>
     		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       			<ul class="nav navbar-nav">
@@ -34,34 +34,27 @@
 
 	<div class="panel panel-success">
   		<div class="panel-heading">
-  			<h4>Editar usuario</h4>
+  			<h4>Información del usuario</h4>
   		</div>
 
   		<div class="panel-body">
         @if (!empty($user))
-    			<form method="post" action="/users/update/{{ $user->id }}">
-          <p>
-            <input value="{{ $user->nombre }}" type="text" name="nombre" placeholder="Nombre" class="form-control" required>
-          </p>
-          <p>
-            <input value="{{ $user->email }}" type="text" name="email" placeholder="correo" class="form-control" required>
-          </p>
-					<p>
-            <input value="{{ $user->edad }}" type="number" name="twitter" placeholder="00" class="form-control" required>
-          </p>
-          <input type="submit" value="Guardar" class="btn btn-success">
-          @else
-          <p>
-            No existe información para éste usuario.
-          </p>
-          @endif
+  			<p>
+  				Nombre: <strong>{{ $user->nombre }}</strong>
+  			</p>
+  			<p>
+  				Correo: <strong>{{ $user->email }}</strong>
+  			</p>
+        <p>
+  				Edad: <strong>{{ $user->edad }}</strong>
+  			</p>
+        @else
+        <p>
+          No existe información para éste usuario.
+        </p>
+        @endif
         <a href="/users" class="btn btn-default">Regresar</a>
-      </form>
 		</div>
 	</div>
-
-  @if(Session::has('message'))
-    <div class="alert alert-{{ Session::get('class') }}">{{ Session::get('message')}}</div>
-  @endif
 </body>
 </html>

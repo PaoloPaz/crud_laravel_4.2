@@ -56,9 +56,11 @@ class UserController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function getShow($id= null)
 	{
-		//
+		$user =User::find($id);
+
+		return View::make('users.show')->with('user',$user);//
 	}
 
 
@@ -68,9 +70,12 @@ class UserController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($id=null)
 	{
 		//
+		$user =User::find($id);
+		return View::make('users.edit')->with('user',$user);//
+
 	}
 
 
@@ -82,7 +87,20 @@ class UserController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$user =User::find($id);
+
+		$user->nombre=Input::get('nombre');
+		$user->email=Input::get('email');
+		$user->edad=Input::get('edad');
+
+		if($user->save()){
+			Session::flash('message','Actualizado exitosamente :D');
+			Session::flash('class','success');
+		}else{
+			Session::flash('message','Hubo un error :(');
+			Session::flash('class','danger');
+		}
+		return Redirect::to('users/edit/'.$id);
 	}
 
 
@@ -94,7 +112,17 @@ class UserController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$user =User::find($id);
+
+			if($user->delete()){
+				Session::flash('message','Eliminado exitosamente :D');
+				Session::flash('class','success');
+			}else{
+				Session::flash('message','Hubo un error :(');
+				Session::flash('class','danger');
+			}
+			return Redirect::to('users/');
+
 	}
 
 

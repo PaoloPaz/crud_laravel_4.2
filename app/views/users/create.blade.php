@@ -38,7 +38,7 @@
   		</div>
 
   		<div class="panel-body">
-  			<form method="post" action="store">
+  			<form method="post" action="{{ URL::to('/users/store')}}">
 				<p>
 					<input type="text" name="nombre" placeholder="Nombre" class="form-control" required>
 				</p>
@@ -51,6 +51,7 @@
 				<p>
 					<input type="submit" value="Guardar" class="btn btn-success">
 				</p>
+				{{Form::token()}}
 			</form>
 		</div>
 	</div>

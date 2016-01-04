@@ -16,8 +16,11 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
-Route::controller('users','UserController');
-
-Route::post('/users/stores','UserController@stores');
+//Route::controller('users','UserController');
+Route::get('users', 'UserController@getIndex');
+Route::get('users/create','UserController@getCreate');
+Route::get('users/show/{id}','UserController@getShow');
+Route::post('/users/store','UserController@store');
+Route::get('/users/edit/{id}','UserController@edit');
 Route::post('/users/update/{id}','UserController@update');
 Route::get('/users/destroy/{id}','UserController@destroy');
